@@ -4,137 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Man Page Animation</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <style>
-    body {
+    * {
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
       background: #0a0a0a;
       font-family: 'Courier New', monospace;
       color: #00ff00;
+      padding: 20px;
       min-height: 100vh;
-    }
-    
-    .manpage {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #000;
-      padding: 30px;
-      border: 2px solid #00ff00;
-      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-    }
-    
-    .header {
-      text-align: center;
-      border-bottom: 1px solid #00ff00;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      opacity: 0;
-    }
-    
-    .title {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 0;
-    }
-    
-    .section {
-      margin: 20px 0;
-      opacity: 0;
-    }
-    
-    .section-title {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #00ff00;
-      text-transform: uppercase;
-    }
-    
-    .content {
-      margin-left: 20px;
-      line-height: 1.6;
-    }
-    
-    .command {
-      color: #ffff00;
-      font-weight: bold;
-    }
-    
-    .option {
-      color: #00ffff;
-    }
-    
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      height: 18px;
-      background: #00ff00;
-      margin-left: 2px;
-      animation: blink 1s infinite;
-    }
-    
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-    
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      padding-top: 10px;
-      border-top: 1px solid #00ff00;
-      opacity: 0;
-      font-size: 12px;
-    }
-    
-    .glitch {
-      position: relative;
-    }
-    
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-    }
-    
-    .glitch::before {
-      color: #ff00ff;
-      animation: glitch-1 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-    }
-    
-    .glitch::after {
-      color: #00ffff;
-      animation: glitch-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite reverse;
-      clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-    }
-    
-    @keyframes glitch-1 {
-      0% { transform: translate(0); opacity: 0; }
-      10% { transform: translate(-2px, -2px); opacity: 0.8; }
-      20% { transform: translate(-3px, 0); opacity: 0; }
-      30% { transform: translate(2px, -1px); opacity: 0.8; }
-      40% { transform: translate(-1px, 2px); opacity: 0; }
-      50% { transform: translate(-2px, -2px); opacity: 0.8; }
-      60% { transform: translate(3px, 1px); opacity: 0; }
-      100% { transform: translate(0); opacity: 0; }
-    }
-    
-    @keyframes glitch-2 {
-      0% { transform: translate(0); opacity: 0; }
-      10% { transform: translate(2px, 2px); opacity: 0.8; }
-      20% { transform: translate(3px, 0); opacity: 0; }
-      30% { transform: translate(-2px, 1px); opacity: 0.8; }
-      40% { transform: translate(1px, -2px); opacity: 0; }
-      50% { transform: translate(2px, 2px); opacity: 0.8; }
-      60% { transform: translate(-3px, -1px); opacity: 0; }
-      100% { transform: translate(0); opacity: 0; }
+      overflow-x: hidden;
     }
     
     .scanline {
@@ -168,12 +51,12 @@
       pointer-events: none;
       opacity: 0.03;
       z-index: 5;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100%" height="100%" filter="url(%23noise)" /></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100%" height="100%" filter="url(%23n)" /></svg>');
       animation: noise 0.2s steps(10) infinite;
     }
     
     @keyframes noise {
-      0% { transform: translate(0, 0); }
+      0%, 100% { transform: translate(0, 0); }
       10% { transform: translate(-5%, -5%); }
       20% { transform: translate(-10%, 5%); }
       30% { transform: translate(5%, -10%); }
@@ -183,7 +66,188 @@
       70% { transform: translate(0, 10%); }
       80% { transform: translate(-15%, 0); }
       90% { transform: translate(10%, 5%); }
-      100% { transform: translate(5%, 0); }
+    }
+    
+    .manpage {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #000;
+      padding: 30px;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+      animation: 
+        fadeIn 0.8s ease-out,
+        pulse 2s ease-in-out infinite,
+        jitter 3s ease-in-out infinite;
+      position: relative;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(0, 255, 0, 0.5); }
+    }
+    
+    @keyframes jitter {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-1px, 1px); }
+      20% { transform: translate(1px, -1px); }
+      30% { transform: translate(-1px, -1px); }
+      40% { transform: translate(1px, 1px); }
+      50% { transform: translate(-2px, 0); }
+      60% { transform: translate(2px, 0); }
+      70% { transform: translate(0, -1px); }
+      80% { transform: translate(0, 1px); }
+      90% { transform: translate(-1px, 0); }
+    }
+    
+    .header {
+      text-align: center;
+      border-bottom: 1px solid #00ff00;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
+      animation: flicker 5s ease-in-out infinite;
+    }
+    
+    .title::before,
+    .title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .title::before {
+      color: #ff00ff;
+      animation: glitch-1 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+    
+    .title::after {
+      color: #00ffff;
+      animation: glitch-2 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite reverse;
+      clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    }
+    
+    @keyframes glitch-1 {
+      0%, 95%, 100% { transform: translate(0); opacity: 0; }
+      96% { transform: translate(-2px, -2px); opacity: 0.8; }
+      97% { transform: translate(2px, 1px); opacity: 0.8; }
+      98% { transform: translate(-1px, 2px); opacity: 0.8; }
+      99% { transform: translate(1px, -1px); opacity: 0.8; }
+    }
+    
+    @keyframes glitch-2 {
+      0%, 95%, 100% { transform: translate(0); opacity: 0; }
+      96% { transform: translate(2px, 2px); opacity: 0.8; }
+      97% { transform: translate(-2px, -1px); opacity: 0.8; }
+      98% { transform: translate(1px, -2px); opacity: 0.8; }
+      99% { transform: translate(-1px, 1px); opacity: 0.8; }
+    }
+    
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      41%, 43% { opacity: 0.8; }
+      42% { opacity: 0.5; }
+      44% { opacity: 1; }
+      45% { opacity: 0.7; }
+      46% { opacity: 1; }
+    }
+    
+    .section {
+      margin: 20px 0;
+      animation: slideIn 0.6s ease-out backwards;
+    }
+    
+    .section:nth-child(1) { animation-delay: 0.8s; }
+    .section:nth-child(2) { animation-delay: 1.1s; }
+    .section:nth-child(3) { animation-delay: 1.4s; }
+    .section:nth-child(4) { animation-delay: 1.7s; }
+    .section:nth-child(5) { animation-delay: 2s; }
+    .section:nth-child(6) { animation-delay: 2.3s; }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .section-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #00ff00;
+      text-transform: uppercase;
+      animation: textGlitch 7s ease-in-out infinite;
+    }
+    
+    @keyframes textGlitch {
+      0%, 90%, 100% { transform: translateX(0); }
+      91% { transform: translateX(-3px); }
+      92% { transform: translateX(3px); }
+      93% { transform: translateX(-2px); }
+      94% { transform: translateX(2px); }
+      95% { transform: translateX(0); }
+    }
+    
+    .content {
+      margin-left: 20px;
+      line-height: 1.6;
+      animation: contentFlicker 10s ease-in-out infinite;
+    }
+    
+    @keyframes contentFlicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.95; }
+      50.5% { opacity: 0.85; }
+      51% { opacity: 1; }
+    }
+    
+    .command {
+      color: #ffff00;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+    }
+    
+    .option {
+      color: #00ffff;
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 10px;
+      border-top: 1px solid #00ff00;
+      font-size: 12px;
+      animation: fadeIn 0.6s ease-out 2.6s backwards;
+    }
+    
+    @keyframes distort {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-2px); }
+      40% { transform: translateX(2px); }
+      60% { transform: translateX(-1px); }
+      80% { transform: translateX(1px); }
     }
   </style>
 </head>
@@ -193,7 +257,7 @@
   
   <div class="manpage">
     <div class="header">
-      <h1 class="title glitch" data-text="AWESOME(1) User Commands AWESOME(1)">AWESOME(1) User Commands AWESOME(1)</h1>
+      <h1 class="title" data-text="AWESOME(1) User Commands AWESOME(1)">AWESOME(1) User Commands AWESOME(1)</h1>
     </div>
     
     <div class="section" id="name">
@@ -247,111 +311,5 @@
       Version 1.0.0 - October 2025
     </div>
   </div>
-
-  <script>
-    // Animate header
-    anime({
-      targets: '.header',
-      opacity: [0, 1],
-      duration: 800,
-      easing: 'easeInOutQuad'
-    });
-
-    // Animate sections sequentially
-    anime({
-      targets: '.section',
-      opacity: [0, 1],
-      translateY: [20, 0],
-      delay: anime.stagger(300, {start: 800}),
-      duration: 600,
-      easing: 'easeOutQuad'
-    });
-
-    // Animate footer
-    anime({
-      targets: '.footer',
-      opacity: [0, 1],
-      duration: 600,
-      delay: 3000,
-      easing: 'easeInOutQuad'
-    });
-
-    // Random text scramble effect
-    function scrambleText(element) {
-      const originalText = element.textContent;
-      const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
-      let iterations = 0;
-      const maxIterations = originalText.length;
-      
-      const interval = setInterval(() => {
-        element.textContent = originalText.split('').map((char, index) => {
-          if (index < iterations) {
-            return originalText[index];
-          }
-          return chars[Math.floor(Math.random() * chars.length)];
-        }).join('');
-        
-        if (iterations >= maxIterations) {
-          clearInterval(interval);
-          element.textContent = originalText;
-        }
-        iterations += 1/3;
-      }, 30);
-    }
-
-    // Glitch random sections periodically
-    setInterval(() => {
-      const sections = document.querySelectorAll('.section-title');
-      const randomSection = sections[Math.floor(Math.random() * sections.length)];
-      scrambleText(randomSection);
-    }, 5000);
-
-    // Random color shift glitch
-    setInterval(() => {
-      const manpage = document.querySelector('.manpage');
-      manpage.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
-      
-      setTimeout(() => {
-        manpage.style.transform = 'translate(0, 0)';
-      }, 50);
-    }, 3000);
-
-    // Pulse border effect
-    anime({
-      targets: '.manpage',
-      boxShadow: [
-        '0 0 20px rgba(0, 255, 0, 0.3)',
-        '0 0 40px rgba(0, 255, 0, 0.5)',
-        '0 0 20px rgba(0, 255, 0, 0.3)'
-      ],
-      duration: 2000,
-      loop: true,
-      easing: 'easeInOutSine'
-    });
-    
-    // Random flicker effect
-    setInterval(() => {
-      const content = document.querySelector('.content');
-      anime({
-        targets: content,
-        opacity: [1, 0.7, 1, 0.8, 1],
-        duration: 200,
-        easing: 'linear'
-      });
-    }, 7000);
-    
-    // Horizontal line distortion
-    setInterval(() => {
-      const sections = document.querySelectorAll('.section');
-      const randomSection = sections[Math.floor(Math.random() * sections.length)];
-      
-      anime({
-        targets: randomSection,
-        translateX: [0, -5, 5, -3, 3, 0],
-        duration: 300,
-        easing: 'easeInOutQuad'
-      });
-    }, 4000);
-  </script>
 </body>
 </html>
