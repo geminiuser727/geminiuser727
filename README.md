@@ -1,3 +1,67 @@
+<div>
+    <div class="scanline"></div>
+    <div class="noise"></div>
+
+    <div class="manpage">
+        <div class="header">
+            <h1 class="title" data-text="AWESOME(1) User Commands AWESOME(1)">AWESOME(1) User Commands AWESOME(1)</h1>
+        </div>
+
+        <div class="section" id="name">
+            <div class="section-title">Name</div>
+            <div class="content">
+                <span class="command">awesome</span> - make everything awesome
+            </div>
+        </div>
+
+        <div class="section" id="synopsis">
+            <div class="section-title">Synopsis</div>
+            <div class="content">
+                <span class="command">awesome</span> [<span class="option">-h</span>] [<span class="option">-v</span>]
+                [<span class="option">--make-it-work</span>] [FILE...]
+            </div>
+        </div>
+
+        <div class="section" id="description">
+            <div class="section-title">Description</div>
+            <div class="content">
+                The <span class="command">awesome</span> command transforms ordinary operations into extraordinary
+                experiences. It accepts input files and applies advanced awesomeness algorithms to produce optimal
+                results.
+            </div>
+        </div>
+
+        <div class="section" id="options">
+            <div class="section-title">Options</div>
+            <div class="content">
+                <div style="margin-bottom: 10px;">
+                    <span class="option">-h, --help</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Display this help message and exit
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span class="option">-v, --verbose</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Enable verbose output mode
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span class="option">--make-it-work</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Apply maximum awesomeness level
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="examples">
+            <div class="section-title">Examples</div>
+            <div class="content">
+                $ <span class="command">awesome</span> <span class="option">--make-it-work</span> myfile.txt<br>
+                $ <span class="command">awesome</span> <span class="option">-v</span> *.md
+            </div>
+        </div>
+
+        <div class="footer">
+            Version 1.0.0 - October 2025
+        </div>
+    </div>
+</div>
 <style>
     * {
         margin: 0;
@@ -454,68 +518,3 @@
         }
     }
 </style>
-
-<div>
-    <div class="scanline"></div>
-    <div class="noise"></div>
-
-    <div class="manpage">
-        <div class="header">
-            <h1 class="title" data-text="AWESOME(1) User Commands AWESOME(1)">AWESOME(1) User Commands AWESOME(1)</h1>
-        </div>
-
-        <div class="section" id="name">
-            <div class="section-title">Name</div>
-            <div class="content">
-                <span class="command">awesome</span> - make everything awesome
-            </div>
-        </div>
-
-        <div class="section" id="synopsis">
-            <div class="section-title">Synopsis</div>
-            <div class="content">
-                <span class="command">awesome</span> [<span class="option">-h</span>] [<span class="option">-v</span>]
-                [<span class="option">--make-it-work</span>] [FILE...]
-            </div>
-        </div>
-
-        <div class="section" id="description">
-            <div class="section-title">Description</div>
-            <div class="content">
-                The <span class="command">awesome</span> command transforms ordinary operations into extraordinary
-                experiences. It accepts input files and applies advanced awesomeness algorithms to produce optimal
-                results.
-            </div>
-        </div>
-
-        <div class="section" id="options">
-            <div class="section-title">Options</div>
-            <div class="content">
-                <div style="margin-bottom: 10px;">
-                    <span class="option">-h, --help</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Display this help message and exit
-                </div>
-                <div style="margin-bottom: 10px;">
-                    <span class="option">-v, --verbose</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Enable verbose output mode
-                </div>
-                <div style="margin-bottom: 10px;">
-                    <span class="option">--make-it-work</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Apply maximum awesomeness level
-                </div>
-            </div>
-        </div>
-
-        <div class="section" id="examples">
-            <div class="section-title">Examples</div>
-            <div class="content">
-                $ <span class="command">awesome</span> <span class="option">--make-it-work</span> myfile.txt<br>
-                $ <span class="command">awesome</span> <span class="option">-v</span> *.md
-            </div>
-        </div>
-
-        <div class="footer">
-            Version 1.0.0 - October 2025
-        </div>
-    </div>
-</div>
