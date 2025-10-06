@@ -1,5 +1,1 @@
-<div align="center">
- <a class="link" href="https://github.com/geminiuser727/geminiuser727/blame/main/header.svg">
-  <img class="image" src="header.svg" alt="Click to see the source">
- </a>
-</div>
+![Developer Terminal](./header.svg)
